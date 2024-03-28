@@ -17,7 +17,7 @@ class Solution:
         This method must be filled in by you. You may add other methods and subclasses as you see fit,
         but they must remain within the Solution class.
         """
-        solution = Solution()
+    
         paths = {}
         bandwidths= {}
         priorities = {}
