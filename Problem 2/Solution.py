@@ -22,7 +22,7 @@ class Solution:
                 if neighbor == client:
                     path_list.append(path)
                 else:
-                    new_paths = dfs_all_paths(self, graph, neighbor, client, visited, path)
+                    new_paths = self.dfs_all_paths(graph, neighbor, client, visited, path)
                     path_list.extend(new_paths)
         visited.remove(current_node)
         return path_list
