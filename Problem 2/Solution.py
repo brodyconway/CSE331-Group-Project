@@ -16,13 +16,13 @@ class Solution:
     def dfs_all_paths(self, graph, current_node, client, visited, path):
         visited.append(current_node)
         path_list = []
-        for neighbor in self.graph[current_node]:
+        for neighbor in graph[current_node]:
             if neighbor not in visited:
                 new_path = path + neighbor
                 if neighbor == client:
                     path_list.append(new_path)
                 else:
-                    new_paths = self.dfs_all_paths(self, graph, neighbor, client, visited, new_path)
+                    new_paths = dfs_all_paths(self, graph, neighbor, client, visited, new_path)
                     path_list.extend(new_paths)
         visited.remove(current_node)
         return path_list
@@ -43,7 +43,7 @@ class Solution:
         paths, bandwidths, priorities = {}, {}, {}
         paths = bfs_path(self.graph, self.isp, self.info['list_clients'])
         for client in self.info['list_clients']:
-            client_paths[client] = self.dfs_all_paths(self, self.graph, self.isp, client, visited, path)
+            client_paths[client] = dfs_all_paths(self, self.graph, self.isp, client, visited, path)
             
         length = longest_path(client_paths) 
         temp_dict = {}
@@ -55,10 +55,10 @@ class Solution:
                 except IndexError:
                     client_paths[client] = [paths[0]]
             i = i+1
-            run(self, self.graph, self.isp, self.list_clients, temp_dict, bandwidths, priorities, self.info["is_rural"])
+            run(self, self.graph, self.isp, self.list_clients, temp_dict, bandwidths, priorities, self.info['is_rural'])
             delays = get_delays(self, self.list_clients)
-            for clients in self.list_clients:
-                revenue = pen_0(self, client, delays, self.info["alphas"], self.info["payments"])
+            for clients in self.info['list_clients']:
+                revenue = pen_0(self, client, delays, self.info['alphas'], self.info['payments'])
                 if revenue > paths.get(clients):
                     paths[clients] = revenue
 
