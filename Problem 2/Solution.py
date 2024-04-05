@@ -39,16 +39,20 @@ class Solution:
         path = [] 
         visited = []
         client_paths = {}
+        
         for client in self.info['list_clients']:
             client_paths[client] = self.dfs_all_paths(self, self.graph, self.isp, client, visited, path)
-        length = dis(client_paths) 
+            
+        length = longest_path(client_paths) 
+        temp_dict = {}
         for i in range(length):
             for client, paths in client_paths.items():
                 try:
-                    new_dict[client]=paths[i]
+                    temp_dict[client]=paths[i]
                 except IndexError:
-                    client_paths[h] = [paths[0]]
+                    client_paths[client] = [paths[0]]
             i = i+1
+            # call new function
         
 
         paths, bandwidths, priorities = {}, {}, {}
