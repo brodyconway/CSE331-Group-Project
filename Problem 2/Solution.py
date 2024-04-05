@@ -22,22 +22,34 @@ class Solution:
                 if neighbor == client:
                     path_list.append(new_path)
                 else:
-                    new_paths = self.dfs_all_paths(graph, neighbor, client, visited, new_path)
+                    new_paths = self.dfs_all_paths(self,graph, neighbor, client, visited, new_path)
                     path_list.extend(new_paths)
         visited.remove(current_node)
         return path_list
 
 
+    def longest_path(client_paths):
+        for h, paths in client_paths.items():
+            if len(paths) > length:
+                length = len(paths)
+        return length
 
+    
     def output_paths(self):
-        path = []
-        paths = {} 
+        path = [] 
         visited = []
         client_paths = {}
         for client in self.info['list_clients']:
             client_paths[client] = self.dfs_all_paths(self, self.graph, self.isp, client, visited, path)
-    
-    # NOW NEED TO FIND WHICH PATH IN CLIENT_PATHS HAS NO PENALTY. PATH WITH NO PENLTY GETS ADDED TO PATHS DICTIONARY BELOW. IF ALL PATHS HAVE A PENALTY FOR A NODE JUST ADD THE FIRST PATH AT INDEX 0 TO MAKE IT EASIER
+        length = dis(client_paths) 
+        for i in range(length):
+            for client, paths in client_paths.items():
+                try:
+                    new_dict[client]=paths[i]
+                except IndexError:
+                    client_paths[h] = [paths[0]]
+            i = i+1
+        
 
         paths, bandwidths, priorities = {}, {}, {}
         # Note: You do not need to modify all of the above. For Problem 1, only the paths variable needs to be modified. If you do modify a variable you are not supposed to, you might notice different revenues outputted by the Driver locally since the autograder will ignore the variables not relevant for the problem.
