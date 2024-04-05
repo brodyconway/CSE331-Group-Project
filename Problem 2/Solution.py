@@ -39,12 +39,13 @@ class Solution:
         path = [] 
         visited = []
         client_paths = {}
-        
+        paths, bandwidths, priorities = {}, {}, {}
         for client in self.info['list_clients']:
             client_paths[client] = self.dfs_all_paths(self, self.graph, self.isp, client, visited, path)
             
         length = longest_path(client_paths) 
         temp_dict = {}
+        delays = {}
         for i in range(length):
             for client, paths in client_paths.items():
                 try:
@@ -52,10 +53,13 @@ class Solution:
                 except IndexError:
                     client_paths[client] = [paths[0]]
             i = i+1
-            # call new function
-        
+            run(self, self.graph, self.isp, self.list_clients, temp_dict, bandwidths, priorities, self.info["is_rural"]):
+            delays = get_delays(self, self.list_clients):
+            for clients in self.list_clients:
+                revenue = pen_0(self, client, delays, self.info["alphas"], self.info["payments"]):
+                
 
-        paths, bandwidths, priorities = {}, {}, {}
+      
         # Note: You do not need to modify all of the above. For Problem 1, only the paths variable needs to be modified. If you do modify a variable you are not supposed to, you might notice different revenues outputted by the Driver locally since the autograder will ignore the variables not relevant for the problem.
         # WARNING: DO NOT MODIFY THE LINE BELOW, OR BAD THINGS WILL HAPPEN
         return (paths, bandwidths, priorities)
