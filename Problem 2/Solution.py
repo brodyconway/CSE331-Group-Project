@@ -12,7 +12,7 @@ class Solution:
         self.graph = graph
         self.info = info
 
-
+    #recursively adds each possible path for a node
     def dfs_all_paths(self, graph, current_node, client, visited, path):
         visited.append(current_node)
         path_list = []
@@ -27,7 +27,7 @@ class Solution:
         visited.remove(current_node)
         return path_list
 
-
+    # gets longest possible path out of all clients. This length will be the stopping condition used later on
     def longest_path(client_paths):
         for h, paths in client_paths.items():
             if len(paths) > length:
