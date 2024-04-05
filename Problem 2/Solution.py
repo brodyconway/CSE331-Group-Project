@@ -44,7 +44,7 @@ class Solution:
         paths, bandwidths, priorities = {}, {}, {}
         paths = bfs_path(self.graph, self.isp, self.info['list_clients'])
         for client in self.info['list_clients']:
-            client_paths[client] = dfs_all_paths(self, self.graph, self.isp, client, visited, path)
+            client_paths[client] = self.dfs_all_paths(self.graph, self.isp, client, visited, path)
             
         length = self.longest_path(client_paths) 
         temp_dict = {}
