@@ -12,26 +12,32 @@ class Solution:
         self.graph = graph
         self.info = info
 
-    def output_paths(self):
-    visited = []  
-    path = []  
-    client_paths = {}
-    for client in list_clients:
-        client_paths[client] = dfs_all_paths(graph, isp, client, visited, path)
-        
+
     def dfs_all_paths(graph, current_node, client, visited, path):
         visited.append(current_node)
         path_list = []
         for neighbor in graph[current_node]:
             if neighbor not in visited:
                 new_path = path + neighbor
-                 if neighbor == client:
+                if neighbor == client:
                     path_list.append(new_path)
                 else:
                     new_paths = dfs_all_paths(graph, neighbor, client, visited, new_path)
                     path_list.extend(new_paths)
         visited.remove(current_node)
         return path_list
+
+
+
+    def output_paths(self):
+    visited = []  
+    path = []  
+    client_paths = {}
+    for client in list_clients:
+        client_paths[client] = dfs_all_paths(graph, isp, client, visited, path)
+
+    # NOW NEED TO FIND WHICH PATH IN CLIENT_PATHS HAS NO PENALTY. PATH WITH NO PENLTY GETS ADDED TO PATHS DICTIONARY BELOW. IF ALL PATHS HAVE A PENALTY FOR A NODE JUST ADD THE FIRST PATH AT INDEX 0 TO MAKE IT EASIER
+    
 
 
         paths, bandwidths, priorities = {}, {}, {}
