@@ -13,10 +13,27 @@ class Solution:
         self.info = info
 
     def output_paths(self):
-        """
-        This method must be filled in by you. You may add other methods and subclasses as you see fit,
-        but they must remain within the Solution class.
-        """
+    visited = []  
+    path = []  
+    client_paths = {}
+    for client in list_clients:
+        client_paths[client] = dfs_all_paths(graph, isp, client, visited, path)
+        
+    def dfs_all_paths(graph, current_node, client, visited, path):
+        visited.append(current_node)
+        path_list = []
+        for neighbor in graph[current_node]:
+            if neighbor not in visited:
+                new_path = path + neighbor
+                 if neighbor == client:
+                    path_list.append(new_path)
+                else:
+                    new_paths = dfs_all_paths(graph, neighbor, client, visited, new_path)
+                    path_list.extend(new_paths)
+        visited.remove(current_node)
+        return path_list
+
+
         paths, bandwidths, priorities = {}, {}, {}
         # Note: You do not need to modify all of the above. For Problem 1, only the paths variable needs to be modified. If you do modify a variable you are not supposed to, you might notice different revenues outputted by the Driver locally since the autograder will ignore the variables not relevant for the problem.
         # WARNING: DO NOT MODIFY THE LINE BELOW, OR BAD THINGS WILL HAPPEN
