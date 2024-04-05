@@ -33,7 +33,7 @@ class Solution:
     visited = []  
     path = []  
     client_paths = {}
-    for client in list_clients:
+    for client in self.info['list_clients']:
         client_paths[client] = dfs_all_paths(graph, isp, client, visited, path)
 
     # NOW NEED TO FIND WHICH PATH IN CLIENT_PATHS HAS NO PENALTY. PATH WITH NO PENLTY GETS ADDED TO PATHS DICTIONARY BELOW. IF ALL PATHS HAVE A PENALTY FOR A NODE JUST ADD THE FIRST PATH AT INDEX 0 TO MAKE IT EASIER
