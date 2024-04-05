@@ -28,7 +28,8 @@ class Solution:
         return path_list
 
     # gets longest possible path out of all clients. This length will be the stopping condition used later on
-    def longest_path(client_paths):
+    def longest_path(self, client_paths):
+        length =0
         for h, paths in client_paths.items():
             if len(paths) > length:
                 length = len(paths)
@@ -43,7 +44,7 @@ class Solution:
         paths, bandwidths, priorities = {}, {}, {}
         paths = bfs_path(self.graph, self.isp, self.info['list_clients'])
         for client in self.info['list_clients']:
-            client_paths[client] = self.dfs_all_paths(self, self.graph, self.isp, client, visited, path)
+            client_paths[client] = dfs_all_paths(self, self.graph, self.isp, client, visited, path)
             
         length = self.longest_path(client_paths) 
         temp_dict = {}
