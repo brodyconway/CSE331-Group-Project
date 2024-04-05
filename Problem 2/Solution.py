@@ -18,11 +18,11 @@ class Solution:
         path_list = []
         for neighbor in graph[current_node]:
             if neighbor not in visited:
-                new_path = path + neighbor
+                path.append(neighbor)
                 if neighbor == client:
-                    path_list.append(new_path)
+                    path_list.append(path)
                 else:
-                    new_paths = dfs_all_paths(self, graph, neighbor, client, visited, new_path)
+                    new_paths = dfs_all_paths(self, graph, neighbor, client, visited, path)
                     path_list.extend(new_paths)
         visited.remove(current_node)
         return path_list
