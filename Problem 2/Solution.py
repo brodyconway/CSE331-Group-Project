@@ -55,10 +55,10 @@ class Solution:
                 except IndexError:
                     client_paths[client] = [paths[0]]
             i = i+1
-            run(self, self.graph, self.isp, self.list_clients, temp_dict, bandwidths, priorities, self.info["is_rural"]):
-            delays = get_delays(self, self.list_clients):
+            run(self, self.graph, self.isp, self.list_clients, temp_dict, bandwidths, priorities, self.info["is_rural"])
+            delays = get_delays(self, self.list_clients)
             for clients in self.list_clients:
-                revenue = pen_0(self, client, delays, self.info["alphas"], self.info["payments"]):
+                revenue = pen_0(self, client, delays, self.info["alphas"], self.info["payments"])
                 if revenue > paths.get(clients):
                     paths[clients] = revenue
 
